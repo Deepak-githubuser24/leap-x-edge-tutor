@@ -1,0 +1,6 @@
+{
+  "name": "LEAP X",
+  "description": "Offline-first AI tutor for rural students, featuring multilingual voice interactions and mastery tracking.",
+  "requestFramePermissions": ["camera", "microphone"],
+  "majorCapabilities": []
+}

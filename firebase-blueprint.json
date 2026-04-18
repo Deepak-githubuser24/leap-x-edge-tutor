@@ -1,0 +1,38 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "User profile with language preferences.",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "description": "The user's Firebase Auth UID" },
+        "displayName": { "type": "string", "description": "User's full name" },
+        "email": { "type": "string", "description": "User's email address" },
+        "preferredLanguage": { "type": "string", "enum": ["en", "hi", "ta"], "description": "Preferred interface & spoken language" }
+      },
+      "required": ["uid", "preferredLanguage"]
+    },
+    "ProgressModule": {
+      "title": "ProgressModule",
+      "description": "Progress tracking for a learning module.",
+      "type": "object",
+      "properties": {
+        "moduleId": { "type": "string" },
+        "title": { "type": "string" },
+        "masteryLevel": { "type": "number", "description": "0 to 1 scale of mastery" },
+        "lastReviewedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["moduleId", "title", "masteryLevel", "lastReviewedAt"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": { "$ref": "#/entities/UserProfile" },
+      "description": "Stores user profiles."
+    },
+    "/users/{userId}/modules/{moduleId}": {
+      "schema": { "$ref": "#/entities/ProgressModule" },
+      "description": "Stores progress for different subjects."
+    }
+  }
+}

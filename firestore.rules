@@ -1,0 +1,49 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Check if the user is authenticated
+    function isAuthenticated() {
+       return request.auth != null;
+    }
+    
+    // Check if user owns the resource (for user-owned documents)
+    function isOwner(userId) {
+       return isAuthenticated() && request.auth.uid == userId;
+    }
+    
+    // Validate string length
+    function validStringLength(field, minLen, maxLen) {
+       return request.resource.data[field] is string &&
+         request.resource.data[field].size() >= minLen &&
+         request.resource.data[field].size() <= maxLen;
+    }
+    
+    // Validate map only contains allowed keys
+    function hasOnlyAllowedFields(fields) {
+      return request.resource.data.keys().hasOnly(fields);
+    }
+
+    match /users/{userId} {
+      function isValidUser() {
+        return hasOnlyAllowedFields(['uid', 'displayName', 'email', 'preferredLanguage']) &&
+               request.resource.data.uid == userId &&
+               (request.resource.data.preferredLanguage in ['en', 'hi', 'ta']);
+      }
+
+      allow read: if isOwner(userId);
+      allow create, update: if isOwner(userId) && isValidUser();
+      
+      match /modules/{moduleId} {
+        function isValidModule() {
+          return hasOnlyAllowedFields(['moduleId', 'title', 'masteryLevel', 'lastReviewedAt']) &&
+                 request.resource.data.masteryLevel >= 0 && 
+                 request.resource.data.masteryLevel <= 1;
+        }
+
+        allow read, delete: if isOwner(userId);
+        allow create, update: if isOwner(userId) && isValidModule();
+      }
+    }
+  }
+}
