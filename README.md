@@ -55,11 +55,4 @@ In the production build targeted for AMD APUs, we utilize OpenVINO / DirectML bi
 2. `phi-3-mini-4k-instruct-q4.gguf` for offline reasoning.
 3. Indic TTS for speech output.
 
-## 90-Second Demo Video Script
-
-* **[0:00 - 0:10] Hook:** "Students in rural India don't just need access to exams; they need personal tutors. But bandwidth is a luxury." (Show Map of India with low connectivity zones fading to rural school)
-* **[0:10 - 0:30] LEAP X Introduction:** "Meet LEAP X. An offline, voice-first AI tutor powered specifically by AMD's Ryzen AI NPU." (Show user opening laptop, Dashboard showing 0 internet connection, NPU widget spiking to 80%)
-* **[0:30 - 0:50] Multilingual Voice Test:** (Student clicks Tamil 🎤 icon) Student speaks Tamil: "எனக்கு photosynthesis புரியவில்லை."
-  LEAP X responds in Tamil (TTS + Text Highlight): "கவலைப்படாதே! தாவரங்கள் எப்படி தங்கள் உணவை உருவாக்குகின்றன என்பதைப் பார்ப்போம்..."
-* **[0:50 - 0:70] Mastery & Spaced Repetition:** "Every interaction feeds the Spaced Repetition Engine." (Screen shifts to Dashboard tracking "Kinematics 85%"). LEAP X dynamically prepares the next module.
-* **[0:70 - 0:90] Mission & Finale:** "It's 100% private. 100% offline. Because the future of education shouldn't buffer. LEAP X — AMD Slingshot 2026." (Fade out to logo and AMD Ryzen AI XDNA badge).
+thank you for visiting 
